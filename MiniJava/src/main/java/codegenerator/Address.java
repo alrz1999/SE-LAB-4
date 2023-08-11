@@ -4,34 +4,16 @@ package codegenerator;
  * Created by mohammad hosein on 6/28/2015.
  */
 
-public class Address {
+public abstract class Address {
     private int num;
-    private TypeAddress type;
     private VarType varType;
-
-    public Address(int num, VarType varType, TypeAddress type) {
-        this.setNum(num);
-        this.setType(type);
-        this.setVarType(varType);
-    }
 
     public Address(int num, VarType varType) {
         this.setNum(num);
-        this.setType(TypeAddress.DIRECT);
         this.setVarType(varType);
     }
 
-    public String toString() {
-        switch (getType()) {
-            case DIRECT:
-                return getNum() + "";
-            case INDIRECT:
-                return "@" + getNum();
-            case IMMEDIATE:
-                return "#" + getNum();
-        }
-        return getNum() + "";
-    }
+    public abstract String toString();
 
     public int getNum() {
         return num;
@@ -41,13 +23,7 @@ public class Address {
         this.num = num;
     }
 
-    public TypeAddress getType() {
-        return type;
-    }
-
-    public void setType(TypeAddress type) {
-        this.type = type;
-    }
+    public abstract TypeAddress getType();
 
     public VarType getVarType() {
         return varType;
@@ -55,5 +31,53 @@ public class Address {
 
     public void setVarType(VarType varType) {
         this.varType = varType;
+    }
+}
+
+class DirectAddress extends Address {
+    public DirectAddress(int num, VarType varType) {
+        super(num, varType);
+    }
+
+    @Override
+    public String toString() {
+        return getNum() + "";
+    }
+
+    @Override
+    public TypeAddress getType() {
+        return TypeAddress.DIRECT;
+    }
+}
+
+class IndirectAddress extends Address {
+    public IndirectAddress(int num, VarType varType) {
+        super(num, varType);
+    }
+
+    @Override
+    public String toString() {
+        return "@" + getNum();
+    }
+
+    @Override
+    public TypeAddress getType() {
+        return TypeAddress.INDIRECT;
+    }
+}
+
+class ImmediateAddress extends Address {
+    public ImmediateAddress(int num, VarType varType) {
+        super(num, varType);
+    }
+
+    @Override
+    public String toString() {
+        return "#" + getNum();
+    }
+
+    @Override
+    public TypeAddress getType() {
+        return TypeAddress.IMMEDIATE;
     }
 }
