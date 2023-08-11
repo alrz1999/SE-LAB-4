@@ -4,6 +4,10 @@ import scanner.token.Token;
 
 import java.util.ArrayList;
 
+interface GrammarSymbol {
+    boolean isTerminal();
+}
+
 /**
  * Created by mohammad hosein on 6/25/2015.
  */
@@ -63,10 +67,6 @@ public class Rule {
     public void setSemanticAction(int semanticAction) {
         this.semanticAction = semanticAction;
     }
-}
-
-interface GrammarSymbol {
-    boolean isTerminal();
 }
 
 class TerminalGrammarSymbol implements GrammarSymbol {

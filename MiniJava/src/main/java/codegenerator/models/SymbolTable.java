@@ -20,12 +20,12 @@ public class SymbolTable {
         keyWords.put("false", AddressType.IMMEDIATE.createAddress(0, VarType.BOOL));
     }
 
-    public void setLastType(SymbolType type) {
-        lastType = type;
-    }
-
     public SymbolType getLastType() {
         return lastType;
+    }
+
+    public void setLastType(SymbolType type) {
+        lastType = type;
     }
 
     public Memory getMem() {
