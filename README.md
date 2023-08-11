@@ -12,9 +12,13 @@
  
 . طبق دسته‌بندی وب‌سایت [refactoring.guru](https://refactoring.guru/refactoring/smells)، بوهای بد کد به پنج دسته تقسیم می‌شوند. در مورد هر کدام از این پنج دسته توضیح مختصری دهید.
 1.Bloaters:
+
 2.Object-Orientation Abusers:
+
 3.Change Preventers:
+
 4.Dispensables:
+
 5.Couplers:
 
 
