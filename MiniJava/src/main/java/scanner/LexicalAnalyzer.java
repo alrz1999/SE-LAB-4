@@ -31,7 +31,7 @@ public class LexicalAnalyzer {
                         break;
 
                     }
-                    if (matcher.group(Type.ERROR_ID.name()) != null) {
+                    if (matcher.group(Type.ERRORID.name()) != null) {
                         ErrorHandler.printError("The id must start with character");
                         break;
                     }
