@@ -57,33 +57,65 @@ public class Memory {
 }
 
 class _3AddressCode {
-    public Operation operation;
-    public Address operand1;
-    public Address operand2;
-    public Address operand3;
+    private Operation operation;
+    private Address operand1;
+    private Address operand2;
+    private Address operand3;
 
     public _3AddressCode() {
 
     }
 
     public _3AddressCode(Operation op, Address opr1, Address opr2, Address opr3) {
-        operation = op;
-        operand1 = opr1;
-        operand2 = opr2;
-        operand3 = opr3;
+        setOperation(op);
+        setOperand1(opr1);
+        setOperand2(opr2);
+        setOperand3(opr3);
     }
 
     public String toString() {
-        if (operation == null) return "";
+        if (getOperation() == null) return "";
         StringBuffer res = new StringBuffer("(");
-        res.append(operation.toString()).append(",");
-        if (operand1 != null) res.append(operand1);
+        res.append(getOperation().toString()).append(",");
+        if (getOperand1() != null) res.append(getOperand1());
         res.append(",");
-        if (operand2 != null) res.append(operand2);
+        if (getOperand2() != null) res.append(getOperand2());
         res.append(",");
-        if (operand3 != null) res.append(operand3);
+        if (getOperand3() != null) res.append(getOperand3());
         res.append(")");
 
         return res.toString();
+    }
+
+    public Operation getOperation() {
+        return operation;
+    }
+
+    public void setOperation(Operation operation) {
+        this.operation = operation;
+    }
+
+    public Address getOperand1() {
+        return operand1;
+    }
+
+    public void setOperand1(Address operand1) {
+        this.operand1 = operand1;
+    }
+
+    public Address getOperand2() {
+        return operand2;
+    }
+
+    public void setOperand2(Address operand2) {
+        this.operand2 = operand2;
+    }
+
+    public Address getOperand3() {
+        return operand3;
+    }
+
+    public void setOperand3(Address operand3) {
+        this.operand3 = operand3;
     }
 }
