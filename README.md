@@ -37,5 +37,13 @@
 
 ## گزارش کار و تصاویر مربوط به ان:
 
-
+در کامیت‌های زیر بعد از اضافه کردن پروژه، برخی `refactor‍` ها و `reformat‍` های اولیه جهت خواناتر شدن پروژه انجام گرفته‌است.
+1. در کامیت‌های زیر، کدهای بدون استفاده حذف شده‌اند؛ TODO ها حذف شده‌اند؛ نام پکیج‌ها، کلاس‌ها و فیلدها اصلاح شده‌است؛ برخی غلط‌های املایی اصلاح شده‌اند:
+    - کامیت [Remove Unused codes and TODOs](https://github.com/alrz1999/SE-LAB-4/commit/076fcbf60768b9bd77032600f38b5213305271a9)
+    - کامیت [Fix Package names](https://github.com/alrz1999/SE-LAB-4/commit/68fe985d05f0fcd376e95f42a5a32441c8821e8e)
+    - کامیت [Fix typo](https://github.com/alrz1999/SE-LAB-4/commit/e1918381afd02b0643ba8638d2818de9fe1d6433)
+    - کامیت [Fix Class names](https://github.com/alrz1999/SE-LAB-4/commit/40c89b72d1372c1c63b9ddc332719c9cebfaa637)
+    - کامیت [Fix fields names](https://github.com/alrz1999/SE-LAB-4/commit/e28f6f80c5691bab1985635fbdca9189b444f9e0)
+    - کامیت [Remove unused codes](https://github.com/alrz1999/SE-LAB-4/commit/1a1f57e76774b8e4c409e033bc37266c1adfb539)
+    - کامیت [Fix enums naming](https://github.com/alrz1999/SE-LAB-4/commit/804b4cd5c3a7309e5f30fd7b7ba8d8207bb1697e)
 
