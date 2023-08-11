@@ -6,28 +6,28 @@ import java.util.ArrayList;
  * Created by mohammad hosein on 6/27/2015.
  */
 public class Memory {
-    private final int stratTempMemoryAddress = 500;
-    private final int stratDataMemoryAddress = 200;
-    private final int dataSize = 4;
-    private final int tempSize = 4;
+    private static final int TEMP_MEMORY_START_ADDRESS = 500;
+    private static final int DATA_MEMORY_START_ADDRESS = 200;
+    private static final int DATA_SIZE = 4;
+    private static final int TEMP_SIZE = 4;
     private final ArrayList<_3AddressCode> codeBlock;
     private int lastTempIndex;
     private int lastDataAddress;
 
     public Memory() {
-        codeBlock = new ArrayList<_3AddressCode>();
-        lastTempIndex = stratTempMemoryAddress;
-        lastDataAddress = stratDataMemoryAddress;
+        codeBlock = new ArrayList<>();
+        lastTempIndex = TEMP_MEMORY_START_ADDRESS;
+        lastDataAddress = DATA_MEMORY_START_ADDRESS;
     }
 
     public int getTemp() {
-        lastTempIndex += tempSize;
-        return lastTempIndex - tempSize;
+        lastTempIndex += TEMP_SIZE;
+        return lastTempIndex - TEMP_SIZE;
     }
 
     public int getDateAddress() {
-        lastDataAddress += dataSize;
-        return lastDataAddress - dataSize;
+        lastDataAddress += DATA_SIZE;
+        return lastDataAddress - DATA_SIZE;
     }
 
     public int saveMemory() {
