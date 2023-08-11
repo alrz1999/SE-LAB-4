@@ -32,27 +32,41 @@ public class Rule {
             String[] RHSs = splited[1].split(" ");
             for (String s : RHSs) {
                 try {
-                    RHS.add(new GrammarSymbol(NonTerminal.valueOf(s)));
+                    RHS.add(new NonTerminalGrammarSymbol(NonTerminal.valueOf(s)));
                 } catch (Exception e) {
-                    RHS.add(new GrammarSymbol(new Token(Token.getTypeFormString(s), s)));
+                    RHS.add(new TerminalGrammarSymbol(new Token(Token.getTypeFormString(s), s)));
                 }
             }
         }
     }
 }
 
-class GrammarSymbol {
-    public boolean isTerminal;
-    public NonTerminal nonTerminal;
+interface GrammarSymbol {
+    boolean isTerminal();
+}
+
+class TerminalGrammarSymbol implements GrammarSymbol {
     public Token terminal;
 
-    public GrammarSymbol(NonTerminal nonTerminal) {
-        this.nonTerminal = nonTerminal;
-        isTerminal = false;
+    public TerminalGrammarSymbol(Token terminal) {
+        this.terminal = terminal;
     }
 
-    public GrammarSymbol(Token terminal) {
-        this.terminal = terminal;
-        isTerminal = true;
+    @Override
+    public boolean isTerminal() {
+        return true;
+    }
+}
+
+class NonTerminalGrammarSymbol implements GrammarSymbol {
+    public NonTerminal nonTerminal;
+
+    public NonTerminalGrammarSymbol(NonTerminal nonTerminal) {
+        this.nonTerminal = nonTerminal;
+    }
+
+    @Override
+    public boolean isTerminal() {
+        return false;
     }
 }
