@@ -23,7 +23,6 @@ public class lexicalAnalyzer {
     }
 
     public Token getNextToken() {
-
         while (matcher.find()) {
             for (Type t : Type.values()) {
 
@@ -41,6 +40,7 @@ public class lexicalAnalyzer {
                 }
             }
         }
+
         return new Token(Type.EOF, "$");
     }
 }
