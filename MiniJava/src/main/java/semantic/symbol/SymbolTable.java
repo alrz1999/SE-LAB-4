@@ -3,7 +3,7 @@ package semantic.symbol;
 import codegenerator.Address;
 import codegenerator.Memory;
 import codegenerator.TypeAddress;
-import codegenerator.varType;
+import codegenerator.VarType;
 import errorhandler.ErrorHandler;
 
 import java.util.ArrayList;
@@ -20,8 +20,8 @@ public class SymbolTable {
         mem = memory;
         klasses = new HashMap<>();
         keyWords = new HashMap<>();
-        keyWords.put("true", new Address(1, varType.Bool, TypeAddress.Immediate));
-        keyWords.put("false", new Address(0, varType.Bool, TypeAddress.Immediate));
+        keyWords.put("true", new Address(1, VarType.Bool, TypeAddress.Immediate));
+        keyWords.put("false", new Address(0, VarType.Bool, TypeAddress.Immediate));
     }
 
     public void setLastType(SymbolType type) {
