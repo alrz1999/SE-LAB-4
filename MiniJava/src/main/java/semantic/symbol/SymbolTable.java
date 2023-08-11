@@ -59,11 +59,11 @@ public class SymbolTable {
     }
 
     public void addMethodLocalVariable(String className, String methodName, String localVariableName) {
-        if (klasses.get(className).Methodes.get(methodName).localVariable.containsKey(localVariableName)) {
+        if (klasses.get(className).Methodes.get(methodName).getLocalVariable().containsKey(localVariableName)) {
             ErrorHandler.printError("This variable already defined");
         }
 
-        klasses.get(className).Methodes.get(methodName).localVariable.put(localVariableName, createNewSymbol());
+        klasses.get(className).Methodes.get(methodName).getLocalVariable().put(localVariableName, createNewSymbol());
     }
 
     public void setSuperClass(String superClass, String className) {
@@ -97,19 +97,19 @@ public class SymbolTable {
     }
 
     public int getMethodCallerAddress(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).callerAddress;
+        return klasses.get(className).Methodes.get(methodName).getCallerAddress();
     }
 
     public int getMethodReturnAddress(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).returnAddress;
+        return klasses.get(className).Methodes.get(methodName).getReturnAddress();
     }
 
     public SymbolType getMethodReturnType(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).returnType;
+        return klasses.get(className).Methodes.get(methodName).getReturnType();
     }
 
     public int getMethodAddress(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).codeAddress;
+        return klasses.get(className).Methodes.get(methodName).getCodeAddress();
     }
 
     private Symbol createNewSymbol() {
@@ -136,34 +136,34 @@ public class SymbolTable {
     }
 
     class Method {
-        private final ArrayList<String> orderdParameters;
-        public int codeAddress;
-        public Map<String, Symbol> parameters;
-        public Map<String, Symbol> localVariable;
-        public int callerAddress;
-        public int returnAddress;
-        public SymbolType returnType;
+        private final ArrayList<String> orderedParameters;
+        private int codeAddress;
+        private Map<String, Symbol> parameters;
+        private Map<String, Symbol> localVariable;
+        private int callerAddress;
+        private int returnAddress;
+        private SymbolType returnType;
         private int index;
 
         public Method(int codeAddress, SymbolType returnType) {
-            this.codeAddress = codeAddress;
-            this.returnType = returnType;
-            this.orderdParameters = new ArrayList<>();
-            this.returnAddress = getMem().getDateAddress();
-            this.callerAddress = getMem().getDateAddress();
-            this.parameters = new HashMap<>();
-            this.localVariable = new HashMap<>();
+            this.setCodeAddress(codeAddress);
+            this.setParameters(new HashMap<>());
+            this.setLocalVariable(new HashMap<>());
+            this.setCallerAddress(getMem().getDateAddress());
+            this.setReturnAddress(getMem().getDateAddress());
+            this.setReturnType(returnType);
+            this.orderedParameters = new ArrayList<>();
         }
 
         public Symbol getVariable(String variableName) {
-            if (parameters.containsKey(variableName)) return parameters.get(variableName);
-            if (localVariable.containsKey(variableName)) return localVariable.get(variableName);
+            if (getParameters().containsKey(variableName)) return getParameters().get(variableName);
+            if (getLocalVariable().containsKey(variableName)) return getLocalVariable().get(variableName);
             return null;
         }
 
         public void addParameter(String parameterName) {
-            parameters.put(parameterName, createNewSymbol());
-            orderdParameters.add(parameterName);
+            getParameters().put(parameterName, createNewSymbol());
+            orderedParameters.add(parameterName);
         }
 
         private void reset() {
@@ -171,11 +171,59 @@ public class SymbolTable {
         }
 
         private Symbol getNextParameter() {
-            return parameters.get(orderdParameters.get(index));
+            return getParameters().get(orderedParameters.get(index));
         }
 
         public void increaseIndex() {
             index += 1;
+        }
+
+        public int getCodeAddress() {
+            return codeAddress;
+        }
+
+        public void setCodeAddress(int codeAddress) {
+            this.codeAddress = codeAddress;
+        }
+
+        public Map<String, Symbol> getParameters() {
+            return parameters;
+        }
+
+        public void setParameters(Map<String, Symbol> parameters) {
+            this.parameters = parameters;
+        }
+
+        public Map<String, Symbol> getLocalVariable() {
+            return localVariable;
+        }
+
+        public void setLocalVariable(Map<String, Symbol> localVariable) {
+            this.localVariable = localVariable;
+        }
+
+        public int getCallerAddress() {
+            return callerAddress;
+        }
+
+        public void setCallerAddress(int callerAddress) {
+            this.callerAddress = callerAddress;
+        }
+
+        public int getReturnAddress() {
+            return returnAddress;
+        }
+
+        public void setReturnAddress(int returnAddress) {
+            this.returnAddress = returnAddress;
+        }
+
+        public SymbolType getReturnType() {
+            return returnType;
+        }
+
+        public void setReturnType(SymbolType returnType) {
+            this.returnType = returnType;
         }
     }
 }
