@@ -4,10 +4,6 @@ import scanner.token.Token;
 
 import java.util.ArrayList;
 
-interface GrammarSymbol {
-    boolean isTerminal();
-}
-
 /**
  * Created by mohammad hosein on 6/25/2015.
  */
@@ -66,47 +62,5 @@ public class Rule {
 
     public void setSemanticAction(int semanticAction) {
         this.semanticAction = semanticAction;
-    }
-}
-
-class TerminalGrammarSymbol implements GrammarSymbol {
-    private Token terminal;
-
-    public TerminalGrammarSymbol(Token terminal) {
-        this.setTerminal(terminal);
-    }
-
-    @Override
-    public boolean isTerminal() {
-        return true;
-    }
-
-    public Token getTerminal() {
-        return terminal;
-    }
-
-    public void setTerminal(Token terminal) {
-        this.terminal = terminal;
-    }
-}
-
-class NonTerminalGrammarSymbol implements GrammarSymbol {
-    private NonTerminal nonTerminal;
-
-    public NonTerminalGrammarSymbol(NonTerminal nonTerminal) {
-        this.setNonTerminal(nonTerminal);
-    }
-
-    @Override
-    public boolean isTerminal() {
-        return false;
-    }
-
-    public NonTerminal getNonTerminal() {
-        return nonTerminal;
-    }
-
-    public void setNonTerminal(NonTerminal nonTerminal) {
-        this.nonTerminal = nonTerminal;
     }
 }
