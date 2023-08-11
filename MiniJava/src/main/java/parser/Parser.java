@@ -19,17 +19,21 @@ public class Parser {
     private ParseTable parseTable;
     private LexicalAnalyzer lexicalAnalyzer;
 
-    public Parser() {
+       public Parser() {
+        this("src/main/resources/parseTable", "src/main/resources/Rules");
+    }
+
+    public Parser(String strr1, String strr2) {
         parsStack = new Stack<>();
         parsStack.push(0);
         try {
-            parseTable = new ParseTable(Files.readAllLines(Paths.get("src/main/resources/parseTable")).get(0));
+            parseTable = new ParseTable(Files.readAllLines(Paths.get(strr1)).get(0));
         } catch (Exception e) {
             e.printStackTrace();
         }
         rules = new ArrayList<>();
         try {
-            for (String stringRule : Files.readAllLines(Paths.get("src/main/resources/Rules"))) {
+            for (String stringRule : Files.readAllLines(Paths.get(strr2))) {
                 rules.add(new Rule(stringRule));
             }
         } catch (IOException e) {
