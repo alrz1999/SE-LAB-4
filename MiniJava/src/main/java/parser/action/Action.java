@@ -1,14 +1,10 @@
-package parser;
-
-enum Act {
-    SHIFT, REDUCE, ACCEPT
-}
+package parser.action;
 
 public class Action {
-    private Act action;
+    private ActionType action;
     private int number;
 
-    public Action(Act action, int number) {
+    public Action(ActionType action, int number) {
         this.setAction(action);
         this.setNumber(number);
     }
@@ -25,11 +21,11 @@ public class Action {
         return getAction().toString() + getNumber();
     }
 
-    public Act getAction() {
+    public ActionType getAction() {
         return action;
     }
 
-    public void setAction(Act action) {
+    public void setAction(ActionType action) {
         this.action = action;
     }
 

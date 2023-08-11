@@ -3,6 +3,8 @@ package parser;
 import codegenerator.CodeGenerator;
 import errorhandler.ErrorHandler;
 import log.Log;
+import parser.action.Action;
+import parser.rule.Rule;
 import scanner.LexicalAnalyzer;
 import scanner.token.Token;
 

@@ -1,5 +1,8 @@
 package parser;
 
+import parser.action.Action;
+import parser.action.ActionType;
+import parser.rule.NonTerminal;
 import scanner.token.Token;
 
 import java.util.ArrayList;
@@ -10,7 +13,7 @@ import java.util.Map;
  * Created by mohammad hosein on 6/25/2015.
  */
 
-public class ParseTable {
+class ParseTable {
     private final ArrayList<Map<Token, Action>> actionTable;
     private final ArrayList<Map<NonTerminal, Integer>> gotoTable;
 
@@ -42,10 +45,10 @@ public class ParseTable {
             for (int j = 1; j < cols.length; j++) {
                 if (!cols[j].equals("")) {
                     if (cols[j].equals("acc")) {
-                        actionTable.get(actionTable.size() - 1).put(terminals.get(j), new Action(Act.ACCEPT, 0));
+                        actionTable.get(actionTable.size() - 1).put(terminals.get(j), new Action(ActionType.ACCEPT, 0));
                     } else if (terminals.containsKey(j)) {
                         Token t = terminals.get(j);
-                        Action a = new Action(cols[j].charAt(0) == 'r' ? Act.REDUCE : Act.SHIFT, Integer.parseInt(cols[j].substring(1)));
+                        Action a = new Action(cols[j].charAt(0) == 'r' ? ActionType.REDUCE : ActionType.SHIFT, Integer.parseInt(cols[j].substring(1)));
                         actionTable.get(actionTable.size() - 1).put(t, a);
                     } else if (nonTerminals.containsKey(j)) {
                         gotoTable.get(gotoTable.size() - 1).put(nonTerminals.get(j), Integer.parseInt(cols[j]));
