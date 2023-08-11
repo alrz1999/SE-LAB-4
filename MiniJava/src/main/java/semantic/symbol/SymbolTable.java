@@ -44,30 +44,30 @@ public class SymbolTable {
     }
 
     public void addField(String fieldName, String className) {
-        klasses.get(className).Fields.put(fieldName, createNewSymbol());
+        klasses.get(className).getFields().put(fieldName, createNewSymbol());
     }
 
     public void addMethod(String className, String methodName, int address) {
-        if (klasses.get(className).Methodes.containsKey(methodName)) {
+        if (klasses.get(className).getMethods().containsKey(methodName)) {
             ErrorHandler.printError("This method already defined");
         }
-        klasses.get(className).Methodes.put(methodName, new Method(address, getLastType()));
+        klasses.get(className).getMethods().put(methodName, new Method(address, getLastType()));
     }
 
     public void addMethodParameter(String className, String methodName, String parameterName) {
-        klasses.get(className).Methodes.get(methodName).addParameter(parameterName);
+        klasses.get(className).getMethods().get(methodName).addParameter(parameterName);
     }
 
     public void addMethodLocalVariable(String className, String methodName, String localVariableName) {
-        if (klasses.get(className).Methodes.get(methodName).getLocalVariable().containsKey(localVariableName)) {
+        if (klasses.get(className).getMethods().get(methodName).getLocalVariable().containsKey(localVariableName)) {
             ErrorHandler.printError("This variable already defined");
         }
 
-        klasses.get(className).Methodes.get(methodName).getLocalVariable().put(localVariableName, createNewSymbol());
+        klasses.get(className).getMethods().get(methodName).getLocalVariable().put(localVariableName, createNewSymbol());
     }
 
     public void setSuperClass(String superClass, String className) {
-        klasses.get(className).superClass = klasses.get(superClass);
+        klasses.get(className).setSuperClass(klasses.get(superClass));
     }
 
     public Address get(String keywordName) {
@@ -79,37 +79,37 @@ public class SymbolTable {
     }
 
     public Symbol get(String className, String methodName, String variable) {
-        Symbol res = klasses.get(className).Methodes.get(methodName).getVariable(variable);
+        Symbol res = klasses.get(className).getMethods().get(methodName).getVariable(variable);
         if (res == null) res = get(variable, className);
         return res;
     }
 
     public Symbol getNextParam(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).getNextParameter();
+        return klasses.get(className).getMethods().get(methodName).getNextParameter();
     }
 
     public void increaseIndex(String className, String methodName) {
-        klasses.get(className).Methodes.get(methodName).increaseIndex();
+        klasses.get(className).getMethods().get(methodName).increaseIndex();
     }
 
     public void startCall(String className, String methodName) {
-        klasses.get(className).Methodes.get(methodName).reset();
+        klasses.get(className).getMethods().get(methodName).reset();
     }
 
     public int getMethodCallerAddress(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).getCallerAddress();
+        return klasses.get(className).getMethods().get(methodName).getCallerAddress();
     }
 
     public int getMethodReturnAddress(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).getReturnAddress();
+        return klasses.get(className).getMethods().get(methodName).getReturnAddress();
     }
 
     public SymbolType getMethodReturnType(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).getReturnType();
+        return klasses.get(className).getMethods().get(methodName).getReturnType();
     }
 
     public int getMethodAddress(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).getCodeAddress();
+        return klasses.get(className).getMethods().get(methodName).getCodeAddress();
     }
 
     private Symbol createNewSymbol() {
@@ -118,20 +118,44 @@ public class SymbolTable {
     }
 
     class Klass {
-        public Map<String, Symbol> Fields;
-        public Map<String, Method> Methodes;
-        public Klass superClass;
+        private Map<String, Symbol> Fields;
+        private Map<String, Method> Methods;
+        private Klass superClass;
 
         public Klass() {
-            Fields = new HashMap<>();
-            Methodes = new HashMap<>();
+            setFields(new HashMap<>());
+            setMethods(new HashMap<>());
         }
 
         public Symbol getField(String fieldName) {
-            if (Fields.containsKey(fieldName)) {
-                return Fields.get(fieldName);
+            if (getFields().containsKey(fieldName)) {
+                return getFields().get(fieldName);
             }
-            return superClass.getField(fieldName);
+            return getSuperClass().getField(fieldName);
+        }
+
+        public Map<String, Symbol> getFields() {
+            return Fields;
+        }
+
+        public void setFields(Map<String, Symbol> fields) {
+            Fields = fields;
+        }
+
+        public Map<String, Method> getMethods() {
+            return Methods;
+        }
+
+        public void setMethods(Map<String, Method> methods) {
+            Methods = methods;
+        }
+
+        public Klass getSuperClass() {
+            return superClass;
+        }
+
+        public void setSuperClass(Klass superClass) {
+            this.superClass = superClass;
         }
     }
 
