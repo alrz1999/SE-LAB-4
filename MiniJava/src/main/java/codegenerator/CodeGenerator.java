@@ -158,7 +158,7 @@ public class CodeGenerator {
 
                 Symbol s = symbolTable.get(className, methodName, next.getValue());
                 VarType t = s.getVarType();
-                ss.push(new Address(s.address, t));
+                ss.push(new Address(s.getAddress(), t));
 
 
             } catch (Exception e) {
@@ -178,7 +178,7 @@ public class CodeGenerator {
 
         Symbol s = symbolTable.get(symbolStack.pop(), symbolStack.pop());
         VarType t = s.getVarType();
-        ss.push(new Address(s.address, t));
+        ss.push(new Address(s.getAddress(), t));
 
     }
 
@@ -236,7 +236,7 @@ public class CodeGenerator {
             if (param.getVarType() != t) {
                 ErrorHandler.printError("The argument type isn't match");
             }
-            memory.add3AddressCode(Operation.ASSIGN, param, new Address(s.address, t), null);
+            memory.add3AddressCode(Operation.ASSIGN, param, new Address(s.getAddress(), t), null);
 
         } catch (IndexOutOfBoundsException e) {
             ErrorHandler.printError("Too many arguments pass for method");

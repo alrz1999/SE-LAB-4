@@ -7,13 +7,21 @@ import codegenerator.VarType;
  */
 
 public abstract class Symbol {
-    public int address;
+    private int address;
 
     public Symbol(int address) {
-        this.address = address;
+        this.setAddress(address);
     }
 
     public abstract VarType getVarType();
+
+    public int getAddress() {
+        return address;
+    }
+
+    public void setAddress(int address) {
+        this.address = address;
+    }
 }
 
 class IntSymbol extends Symbol {
