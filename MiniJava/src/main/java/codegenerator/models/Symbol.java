@@ -1,6 +1,4 @@
-package semantic.symbol;
-
-import codegenerator.VarType;
+package codegenerator.models;
 
 /**
  * Created by mohammad hosein on 6/28/2015.

@@ -9,6 +9,7 @@ public class Main {
         Parser parser = new Parser();
         try {
             parser.startParse(new Scanner(new File("src/main/resources/code")));
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

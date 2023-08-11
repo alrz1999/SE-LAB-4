@@ -1,4 +1,4 @@
-package codegenerator;
+package codegenerator.models;
 
 import java.util.ArrayList;
 

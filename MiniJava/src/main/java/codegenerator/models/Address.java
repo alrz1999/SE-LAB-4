@@ -1,4 +1,4 @@
-package codegenerator;
+package codegenerator.models;
 
 /**
  * Created by mohammad hosein on 6/28/2015.
@@ -23,7 +23,7 @@ public abstract class Address {
         this.num = num;
     }
 
-    public abstract TypeAddress getType();
+    public abstract AddressType getType();
 
     public VarType getVarType() {
         return varType;
@@ -45,8 +45,8 @@ class DirectAddress extends Address {
     }
 
     @Override
-    public TypeAddress getType() {
-        return TypeAddress.DIRECT;
+    public AddressType getType() {
+        return AddressType.DIRECT;
     }
 }
 
@@ -61,8 +61,8 @@ class IndirectAddress extends Address {
     }
 
     @Override
-    public TypeAddress getType() {
-        return TypeAddress.INDIRECT;
+    public AddressType getType() {
+        return AddressType.INDIRECT;
     }
 }
 
@@ -77,7 +77,7 @@ class ImmediateAddress extends Address {
     }
 
     @Override
-    public TypeAddress getType() {
-        return TypeAddress.IMMEDIATE;
+    public AddressType getType() {
+        return AddressType.IMMEDIATE;
     }
 }
