@@ -1,23 +1,23 @@
 package parser;
 
+import codegenerator.CodeGenerator;
+import errorhandler.ErrorHandler;
+import log.Log;
+import scanner.LexicalAnalyzer;
+import scanner.token.Token;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import log.Log;
-import codegenerator.CodeGenerator;
-import errorhandler.ErrorHandler;
-import scanner.LexicalAnalyzer;
-import scanner.token.Token;
-
 public class Parser {
-    private ArrayList<Rule> rules;
-    private Stack<Integer> parsStack;
+    private final ArrayList<Rule> rules;
+    private final Stack<Integer> parsStack;
+    private final CodeGenerator cg;
     private ParseTable parseTable;
     private LexicalAnalyzer lexicalAnalyzer;
-    private CodeGenerator cg;
 
     public Parser() {
         parsStack = new Stack<>();

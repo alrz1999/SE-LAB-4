@@ -11,8 +11,8 @@ import java.util.Map;
  */
 
 public class ParseTable {
-    private ArrayList<Map<Token, Action>> actionTable;
-    private ArrayList<Map<NonTerminal, Integer>> gotoTable;
+    private final ArrayList<Map<Token, Action>> actionTable;
+    private final ArrayList<Map<NonTerminal, Integer>> gotoTable;
 
     public ParseTable(String jsonTable) throws Exception {
         jsonTable = jsonTable.substring(2, jsonTable.length() - 2);
@@ -29,7 +29,7 @@ public class ParseTable {
                 } catch (Exception ignored) {
                 }
             } else {
-                terminals.put(i, new Token(Token.getTyepFormString(cols[i]), cols[i]));
+                terminals.put(i, new Token(Token.getTypeFormString(cols[i]), cols[i]));
             }
         }
         actionTable = new ArrayList<>();

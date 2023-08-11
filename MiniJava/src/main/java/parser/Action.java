@@ -1,5 +1,9 @@
 package parser;
 
+enum Act {
+    SHIFT, REDUCE, ACCEPT
+}
+
 public class Action {
     public Act action;
     public int number;
@@ -20,8 +24,4 @@ public class Action {
         }
         return action.toString() + number;
     }
-}
-
-enum Act {
-    SHIFT, REDUCE, ACCEPT
 }
