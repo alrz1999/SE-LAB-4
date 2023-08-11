@@ -5,23 +5,39 @@ enum Act {
 }
 
 public class Action {
-    public Act action;
-    public int number;
+    private Act action;
+    private int number;
 
     public Action(Act action, int number) {
-        this.action = action;
-        this.number = number;
+        this.setAction(action);
+        this.setNumber(number);
     }
 
     public String toString() {
-        switch (action) {
+        switch (getAction()) {
             case ACCEPT:
                 return "acc";
             case SHIFT:
-                return "s" + number;
+                return "s" + getNumber();
             case REDUCE:
-                return "r" + number;
+                return "r" + getNumber();
         }
-        return action.toString() + number;
+        return getAction().toString() + getNumber();
+    }
+
+    public Act getAction() {
+        return action;
+    }
+
+    public void setAction(Act action) {
+        this.action = action;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 }

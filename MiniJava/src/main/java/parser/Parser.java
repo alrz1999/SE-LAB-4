@@ -55,14 +55,14 @@ public class Parser {
                 Log.print(currentAction.toString());
                 //Log.print("");
 
-                switch (currentAction.action) {
+                switch (currentAction.getAction()) {
                     case SHIFT:
-                        parsStack.push(currentAction.number);
+                        parsStack.push(currentAction.getNumber());
                         lookAhead = lexicalAnalyzer.getNextToken();
 
                         break;
                     case REDUCE:
-                        Rule rule = rules.get(currentAction.number);
+                        Rule rule = rules.get(currentAction.getNumber());
                         for (int i = 0; i < rule.RHS.size(); i++) {
                             parsStack.pop();
                         }
