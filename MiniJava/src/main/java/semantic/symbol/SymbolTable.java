@@ -28,6 +28,14 @@ public class SymbolTable {
         lastType = type;
     }
 
+    public SymbolType getLastType() {
+        return lastType;
+    }
+
+    public Memory getMem() {
+        return mem;
+    }
+
     public void addClass(String className) {
         if (klasses.containsKey(className)) {
             ErrorHandler.printError("This class already defined");
@@ -43,7 +51,7 @@ public class SymbolTable {
         if (klasses.get(className).Methodes.containsKey(methodName)) {
             ErrorHandler.printError("This method already defined");
         }
-        klasses.get(className).Methodes.put(methodName, new Method(address, lastType));
+        klasses.get(className).Methodes.put(methodName, new Method(address, getLastType()));
     }
 
     public void addMethodParameter(String className, String methodName, String parameterName) {
@@ -105,8 +113,8 @@ public class SymbolTable {
     }
 
     private Symbol createNewSymbol() {
-        int address = mem.getDateAddress();
-        return lastType.createSymbol(address);
+        int address = getMem().getDateAddress();
+        return getLastType().createSymbol(address);
     }
 
     class Klass {
@@ -141,8 +149,8 @@ public class SymbolTable {
             this.codeAddress = codeAddress;
             this.returnType = returnType;
             this.orderdParameters = new ArrayList<>();
-            this.returnAddress = mem.getDateAddress();
-            this.callerAddress = mem.getDateAddress();
+            this.returnAddress = getMem().getDateAddress();
+            this.callerAddress = getMem().getDateAddress();
             this.parameters = new HashMap<>();
             this.localVariable = new HashMap<>();
         }
