@@ -11,11 +11,11 @@ public class Action {
 
     public String toString() {
         switch (action) {
-            case accept:
+            case ACCEPT:
                 return "acc";
-            case shift:
+            case SHIFT:
                 return "s" + number;
-            case reduce:
+            case REDUCE:
                 return "r" + number;
         }
         return action.toString() + number;
@@ -23,5 +23,5 @@ public class Action {
 }
 
 enum Act {
-    shift, reduce, accept
+    SHIFT, REDUCE, ACCEPT
 }

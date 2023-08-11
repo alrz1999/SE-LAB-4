@@ -5,5 +5,5 @@ package codegenerator;
  */
 
 public enum VarType {
-    Int, Bool, Non, Address
+    INT, BOOL, NON, ADDRESS
 }

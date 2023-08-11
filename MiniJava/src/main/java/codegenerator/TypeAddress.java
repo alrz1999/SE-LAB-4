@@ -5,5 +5,5 @@ package codegenerator;
  */
 
 public enum TypeAddress {
-    Direct, Indirect, Immediate
+    DIRECT, INDIRECT, IMMEDIATE
 }
